@@ -1,0 +1,64 @@
+[
+  {
+    "id": "t2dm-high-hba1c",
+    "name": "Type 2 Diabetes – High HbA1c Study",
+    "description": "Adults with type 2 diabetes and elevated HbA1c.",
+    "onePageSummary": "OBJECTIVE: To evaluate the effectiveness of an intensified lifestyle and medication intervention in adults with type 2 diabetes and suboptimal glycemic control (HbA1c ≥ 7.0%).\n\nDESIGN: Randomized, controlled, 12-month trial.\n\nELIGIBILITY: Adults 18–75 years with documented type 2 diabetes and most recent HbA1c ≥ 7.0%. Exclusions: age > 80, end-stage renal disease, or other protocol-specified conditions.\n\nINTERVENTION: Structured lifestyle counseling plus algorithm-driven medication titration vs. usual care.\n\nOUTCOMES: Primary: change in HbA1c at 12 months. Secondary: weight, blood pressure, treatment satisfaction.\n\nSTATUS: Currently enrolling.",
+    "inclusionCriteria": [
+      {
+        "id": "age-18-75",
+        "description": "Age between 18 and 75 years",
+        "resourceType": "Patient",
+        "minAge": 18,
+        "maxAge": 75
+      },
+      {
+        "id": "t2dm-diagnosis",
+        "description": "Documented diagnosis of type 2 diabetes",
+        "resourceType": "Condition",
+        "codeSystem": "http://hl7.org/fhir/sid/icd-10-cm",
+        "code": "E11"
+      },
+      {
+        "id": "hba1c-7-plus",
+        "description": "Most recent HbA1c ≥ 7.0%",
+        "resourceType": "Observation",
+        "codeSystem": "http://loinc.org",
+        "code": "4548-4",
+        "numericComparator": ">=",
+        "numericValue": 7.0
+      }
+    ],
+    "exclusionCriteria": [
+      {
+        "id": "age-gt-80",
+        "description": "Age greater than 80 years",
+        "resourceType": "Patient",
+        "minAge": 81
+      },
+      {
+        "id": "end-stage-renal",
+        "description": "End-stage renal disease",
+        "resourceType": "Condition",
+        "codeSystem": "http://hl7.org/fhir/sid/icd-10-cm",
+        "code": "N18.6"
+      }
+    ]
+  },
+  {
+    "id": "nexus",
+    "name": "NEXUS",
+    "description": "UC Davis ED study: validate decision instrument for blunt trauma A/P CT imaging.",
+    "onePageSummary": "Active UC Davis Emergency Department Research Study: NEXUS\nProtocol: IRB# 2264128 | Expiration: 10/1/2025\nPrincipal Investigator: Dr. David Dillon, MD\nStudy start date: October 2025\n\nBACKGROUND: Unrecognized abdominal and pelvic injuries can produce permanent injury, severe disability and even death. Sporadic reports of \"occult\" injuries have generated concern, and physicians, fearing that they may fail to diagnose such injuries, have adopted the practice of obtaining computed tomography of the abdomen and pelvis (A/P CT) on virtually all blunt trauma victims. This practice exposes large numbers of patients to radiation at considerable expense, while detecting injuries in a small minority of cases. Prior work suggests that a decision instrument, composed of a limited number of clinical criteria, can reliably identify blunt injury victims who have \"no risk\" of significant abdominal or pelvic injury (SAPI), and therefore no need for computed tomography (CT), without missing any injured patient. The investigators estimate that nation-wide implementation of this decision instrument could safely reduce CT imaging of blunt injury victims, reduce radiographic charges, and simultaneously decrease ionizing radiation exposure and the risk of radiation-induced malignancy.\n\nPURPOSE: The investigators have already derived a decision instrument composed of select criteria that identifies injured patients with high sensitivity, while simultaneously identifying a subset of patients who can be safely spared imaging. The investigators' current goal is to validate this decision instrument. Validating the sensitivity of the decision instrument (validation phase) with high statistical confidence requires evaluations on approximately 6,600 blunt injury patients. Potential reductions in CT will be determined by counting the number of A/P CTs performed on \"no risk\" patients. Reductions in charges and radiation exposure will be determined by respectively summing radiographic charges and lifetime decreases in radiation morbidity and mortality for all \"no risk\" cases.\n\nINCLUSION CRITERIA:\n• Ages 18 years or older\n• Any blunt injury victim who undergoes abdominopelvic imaging as part of their ED trauma evaluation\n\nEXCLUSION CRITERIA: None\n\nConsent required? No\n\nResearch Associate: Screen for eligible patients and notify Research Coordinator of potential subjects; assist Research Coordinator with getting data form filled out by ED Providers.\n\nResearch Coordinator contact: Logen Arndt, Abhi Gorhe, Nicholeth Santiago, Donovan Nielsen, Karina Klein, RN, Vocera \"ED Research Coordinator\"",
+    "inclusionCriteria": [
+      {
+        "id": "nexus-age-18",
+        "description": "Age 18 years or older",
+        "resourceType": "Patient",
+        "minAge": 18
+      }
+    ],
+    "exclusionCriteria": []
+  }
+]
+

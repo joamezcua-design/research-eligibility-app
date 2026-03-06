@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Research Eligibility App — Public Documentation</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 720px; margin: 0 auto; padding: 2rem; color: #111; }
+    h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+    .subtitle { color: #555; font-size: 0.95rem; margin-bottom: 2rem; }
+    h2 { font-size: 1.15rem; margin-top: 1.5rem; color: #333; }
+    p, ul { margin: 0.5rem 0 1rem; }
+    ul { padding-left: 1.5rem; }
+    footer { margin-top: 2rem; font-size: 0.9rem; color: #666; }
+  </style>
+</head>
+<body>
+  <h1>Research Eligibility App</h1>
+  <p class="subtitle">Public documentation · Version 1.0</p>
+
+  <h2>What this app does</h2>
+  <p>Research Eligibility is a <strong>SMART on FHIR</strong> web application that runs inside the electronic health record (EHR). It helps clinical and research staff identify patients who may be eligible for active research studies.</p>
+  <ul>
+    <li><strong>Single-patient view:</strong> When launched from a patient chart, the app evaluates that patient against configured research studies and shows eligibility (Eligible / Not eligible / Indeterminate) with a breakdown of inclusion and exclusion criteria.</li>
+    <li><strong>ED census view:</strong> The app can list patients currently in the Emergency Department and show, for each patient, which studies they may qualify for, to support screening and enrollment workflows.</li>
+  </ul>
+  <p>The app is <strong>read-only</strong>: it does not create, update, or delete any data in the EHR.</p>
+
+  <h2>Data access</h2>
+  <p>The app requests access to the following types of patient data via the EHR’s FHIR API, only for the purpose of evaluating eligibility against study criteria:</p>
+  <ul>
+    <li>Demographics (e.g., age, sex)</li>
+    <li>Diagnoses and conditions (problem list, history)</li>
+    <li>Laboratory and observation results (e.g., labs, vitals)</li>
+    <li>Medications (current and recent)</li>
+    <li>Encounters (e.g., to identify current ED patients or recent hospitalizations)</li>
+    <li>Procedures (when needed for study criteria)</li>
+    <li>Allergies and intolerances (when needed for study criteria)</li>
+  </ul>
+  <p>All access is limited to what is authorized by the EHR when a user launches the app. The app does not store patient data on external servers; processing happens in the user’s browser or within the organization’s deployed environment.</p>
+
+  <h2>Privacy and security</h2>
+  <p>The app uses the <strong>SMART on FHIR</strong> authorization flow. Access to patient data is granted by the EHR based on the logged-in user’s role and the scopes requested by the app. No patient data is sent to third-party services for eligibility logic. Study definitions are configured within the organization’s deployment. The app is intended to be hosted on the organization’s own infrastructure or a trusted, compliant hosting environment.</p>
+
+  <h2>Support</h2>
+  <p>For technical or access questions about this app, contact your organization’s <strong>ED Research Coordinator</strong> or the <strong>study team</strong> responsible for research eligibility screening at your site.</p>
+
+  <footer>
+    <p>This app is used to support research study screening and enrollment workflows in alignment with institutional IRB and EHR governance policies.</p>
+  </footer>
+</body>
+</html>
