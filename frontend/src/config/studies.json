@@ -59,6 +59,59 @@
       }
     ],
     "exclusionCriteria": []
+  },
+  {
+    "id": "hip-attack-2",
+    "name": "HIP ATTACK-2",
+    "description": "Expedited surgery for hip fracture patients with elevated troponin.",
+    "onePageSummary": "Active UC Davis Emergency Department Research Study: HIP ATTACK-2\nPrincipal Investigators: Katren Tyler, M.D. (Emergency Medicine co-PI), Augustine Saiz, M.D. (Orthopedics co-PI)\nStudy start date: 7/15/2024 | Protocol: IRB# 1980210\n\nBACKGROUND: Millions of adults worldwide suffer hip fractures annually, primarily affecting the elderly and often leading to severe complications (cardiovascular, venous thrombotic, infectious, bleeding), which can result in death. The 90-day mortality rate post-hip fracture is 10–20%. About 20–25% of patients show evidence of heart injury (elevated troponin) at admission; HIP ATTACK-1 suggested these patients may benefit from expedited surgery.\n\nPURPOSE: HIP ATTACK-2 aims to provide more comprehensive evidence on the benefits and risks of expedited surgery for hip fracture patients, potentially influencing clinical guidelines. The trial evaluates mortality, major complications, and functional recovery.\n\nINCLUSION CRITERIA:\n• Age ≥ 45 years\n• Patient is diagnosed with a hip fracture requiring surgery resulting from a low-energy mechanism (e.g., ground-level falls)\n• The patient has an elevated troponin lab result at any point following their injury (abnormal = exceeds upper reference limit, e.g. > 19 ng/L)\n• Capable of providing written informed consent\n\nEXCLUSION CRITERIA:\n• Currently taking an anticoagulant for which no reversing agent is available\n• Currently taking a therapeutic vitamin K antagonist with a history of heparin-induced thrombocytopenia\n• Peri-prosthetic fracture, open fracture, or bilateral fractures\n• Requiring emergency surgery for another reason (e.g., subdural hematoma)\n• Acute MI with mechanical complication, STEMI, or cardiogenic shock\n• Previously enrolled in HIP ATTACK-2\n\nNote: Cannot enroll children, prisoners, or pregnant women. Screening 0700–1500 weekdays.\n\nResearch Coordinator: Donovan Nielsen. On-duty ED research coordinator: Vocera \"ED Research Coordinator\"",
+    "inclusionCriteria": [
+      {
+        "id": "hip-attack-age",
+        "description": "Age ≥ 45 years",
+        "resourceType": "Patient",
+        "minAge": 45
+      },
+      {
+        "id": "hip-attack-hip-fracture",
+        "description": "Diagnosis of hip fracture (femoral neck, intertrochanteric, or subtrochanteric)",
+        "resourceType": "Condition",
+        "codeSystem": "http://hl7.org/fhir/sid/icd-10-cm",
+        "code": "S72.0"
+      },
+      {
+        "id": "hip-attack-troponin",
+        "description": "Elevated troponin after injury (above upper reference limit)",
+        "resourceType": "Observation",
+        "codeSystem": "http://loinc.org",
+        "code": "6598-7",
+        "numericComparator": ">",
+        "numericValue": 19
+      }
+    ],
+    "exclusionCriteria": []
+  },
+  {
+    "id": "takeda-reverser",
+    "name": "Takeda REVERSER (TAK-330)",
+    "description": "Reversal of direct oral Factor Xa inhibitor–induced anticoagulation in patients requiring urgent surgery.",
+    "onePageSummary": "Active UC Davis Emergency Department Research Study: Takeda REVERSER\nA Study of TAK-330 for Reversal of Direct Oral Factor Xa Inhibitor-induced Anticoagulation\nPrincipal Investigator: Daniel Nishijima, MD, MAS\nStudy start: 9/25/2023 | Anticipated completion: 11/30/2025 | IRB #: 1934506\n\nBACKGROUND: Patients on Factor Xa inhibitors are at high risk of bleeding, especially during urgent surgery. There is an unmet need for effective reversal agents.\n\nPURPOSE: To compare TAK-330 with four-factor prothrombin complex concentrate (4F-PCC) for anticoagulation reversal in patients on Factor Xa inhibitors (rivaroxaban, apixaban, edoxaban) requiring urgent surgery or invasive procedures.\n\nINCLUSION: ≥18 years; currently on oral Factor Xa inhibitor; in surgeon's opinion subject requires urgent surgery/procedure with high-risk intraoperative bleeding within 15 hours of last Factor Xa dose; requires reversal agent for suspected Factor Xa inhibitor–related coagulopathy. If surgery beyond 15 hr: plasma anti-FXa >75 ng/mL at screening (apixaban/rivaroxaban only). Women of childbearing potential: negative pregnancy test prior to enrollment.\n\nEXCLUSION: Expected survival <30 days; within 90 days: VTE, MI, DIC, ischemic stroke, TIA, hospitalization for unstable angina, severe/critical COVID-19; active major bleeding; polytrauma; prothrombotic/bleeding disorders; platelet <50,000/μL; HIT; procoagulant drugs/blood products within 7 days; heparin (UFH within 2 hr or LMWH within 6 hr); hypersensitivity to PCC or TAK-330; IgA deficiency with hypersensitivity; septic shock; liver failure Child-Pugh C; renal failure requiring dialysis; breastfeeding; other protocol exclusions.\n\nConsent required: Yes. Research Coordinator: Donovan Nielsen (916-703-5645, dsnielsen@ucdavis.edu). On-duty ED research coordinator: Vocera \"ED Research Coordinator\".",
+    "inclusionCriteria": [
+      {
+        "id": "takeda-age",
+        "description": "Age ≥ 18 years at enrollment",
+        "resourceType": "Patient",
+        "minAge": 18
+      },
+      {
+        "id": "takeda-factor-xa-inhibitor",
+        "description": "Currently on oral Factor Xa inhibitor (rivaroxaban, apixaban, or edoxaban)",
+        "resourceType": "MedicationRequest",
+        "codeSystem": "http://www.nlm.nih.gov/research/umls/rxnorm",
+        "code": "316541"
+      }
+    ],
+    "exclusionCriteria": []
   }
 ]
 

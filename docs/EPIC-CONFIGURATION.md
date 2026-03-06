@@ -114,6 +114,9 @@ The app reads the following at **build time** (Vite embeds them in the client bu
 |----------|----------|-------------|
 | `VITE_EPIC_CLIENT_ID` | Yes | OAuth 2.0 Client ID from Epic app registration. |
 | `VITE_EPIC_SCOPE` | No | Space-separated scopes; if unset, the app uses the default scope string above. |
+| `VITE_EPIC_CHART_URL_TEMPLATE` | No | URL template to open a patient chart in the EMR. Use `{patientId}` as placeholder. When set, “Open in EMR” and clickable patient names (ED census) appear. **Ask your Epic/EMRAP team for the exact URL format** for your instance. |
+
+**Opening the patient chart in Epic:** To let users click a patient and open their chart in the EMR, set `VITE_EPIC_CHART_URL_TEMPLATE` to the URL pattern your Epic deployment uses. For example: `https://epic.your-org.org/patientchart?patientId={patientId}`. The app replaces `{patientId}` with the FHIR patient ID. Epic/EMRAP can provide the correct format for your environment.
 
 Example `.env` for local development:
 
@@ -121,6 +124,8 @@ Example `.env` for local development:
 VITE_EPIC_CLIENT_ID=your-epic-client-id
 # Optional: override scopes
 # VITE_EPIC_SCOPE=launch openid fhirUser patient/Patient.read patient/Observation.read patient/MedicationRequest.read patient/Condition.read
+# Optional: link to open patient chart in EMR (ask Epic/EMRAP for the URL format)
+# VITE_EPIC_CHART_URL_TEMPLATE=https://epic.your-org.org/patientchart?patientId={patientId}
 ```
 
 For production, set these in your CI/CD or hosting platform so the built app has the correct client ID (and scopes, if overridden).

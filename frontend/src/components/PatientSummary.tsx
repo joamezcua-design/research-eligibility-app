@@ -8,12 +8,15 @@ interface PatientSummaryProps {
   loading?: boolean;
   /** Optional status label, e.g. "Eligibility evaluated" or "Pending". */
   statusLabel?: string;
+  /** When set (e.g. from Epic), show "Open in EMR" link. Template: use {patientId} as placeholder. */
+  chartUrlTemplate?: string | null;
 }
 
 export const PatientSummary: React.FC<PatientSummaryProps> = ({
   patient,
   loading = false,
-  statusLabel
+  statusLabel,
+  chartUrlTemplate
 }) => {
   if (loading) {
     return (
@@ -56,6 +59,17 @@ export const PatientSummary: React.FC<PatientSummaryProps> = ({
           <span className="tag tag-gray">{statusLabel}</span>
         )}
       </div>
+      {chartUrlTemplate && patient.id && (
+        <div className="patient-summary-row patient-summary-chart-link">
+          <a
+            href={chartUrlTemplate.replace(/\{patientId\}/g, encodeURIComponent(patient.id))}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open in EMR
+          </a>
+        </div>
+      )}
     </div>
   );
 };

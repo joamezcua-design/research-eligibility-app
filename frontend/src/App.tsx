@@ -35,6 +35,9 @@ const AppInner: React.FC = () => {
   const [edCensusRows, setEdCensusRows] = useState<EDCensusRow[]>([]);
   const [edCensusLoading, setEdCensusLoading] = useState(false);
   const [edCensusError, setEdCensusError] = useState<string | null>(null);
+  const [selectedMockPatientId, setSelectedMockPatientId] = useState<string>(
+    () => mockEdPatientBundles[0]?.patientId ?? ""
+  );
 
   useEffect(() => {
     const run = async () => {
@@ -42,7 +45,9 @@ const AppInner: React.FC = () => {
       try {
         if (!clientState) {
           // In local development without SMART context, use mock data.
-          const mock: PatientDataBundle = mockBundle;
+          const entry = mockEdPatientBundles.find((e) => e.patientId === selectedMockPatientId)
+            ?? mockEdPatientBundles[0];
+          const mock: PatientDataBundle = entry?.bundle ?? mockBundle;
           const results = evaluateStudies(mock, studies);
           setEligibilityResults(results);
           setPatientSummary(mock.patientSummary);
@@ -61,13 +66,13 @@ const AppInner: React.FC = () => {
     };
 
     if (!clientState && !smartLoading) {
-      // Mock path: run immediately when we know we're not in SMART flow.
+      // Mock path: run when we're not in SMART flow or when selected mock patient changes.
       void run();
     } else if (clientState) {
       void run();
     }
     // When smartLoading is true we keep dataLoading true so the UI shows loading.
-  }, [clientState, smartLoading]);
+  }, [clientState, smartLoading, selectedMockPatientId]);
 
   const loadEDCensus = useCallback(async () => {
     setEdCensusLoading(true);
@@ -133,6 +138,9 @@ const AppInner: React.FC = () => {
     [eligibilityResults, selectedStudyId]
   );
 
+  const chartUrlTemplate =
+    (import.meta.env.VITE_EPIC_CHART_URL_TEMPLATE as string | undefined) || null;
+
   return (
     <div className="app-shell">
       <header className="app-header">
@@ -171,6 +179,7 @@ const AppInner: React.FC = () => {
               rows={edCensusRows}
               loading={edCensusLoading}
               error={edCensusError}
+              chartUrlTemplate={clientState ? chartUrlTemplate : null}
             />
           </section>
         </div>
@@ -179,10 +188,28 @@ const AppInner: React.FC = () => {
           <section className="panel">
             <div className="panel-title">Patient &amp; Studies</div>
 
+            {!clientState && mockEdPatientBundles.length > 0 && (
+              <div className="mock-patient-picker">
+                <label htmlFor="mock-patient-select">View patient (mock):</label>
+                <select
+                  id="mock-patient-select"
+                  value={selectedMockPatientId}
+                  onChange={(e) => setSelectedMockPatientId(e.target.value)}
+                >
+                  {mockEdPatientBundles.map(({ patientId, bundle }) => (
+                    <option key={patientId} value={patientId}>
+                      {bundle.patientSummary.name} ({bundle.patientSummary.mrn})
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+
             <PatientSummary
               patient={patientSummary}
               loading={showPatientLoading}
               statusLabel={showPatientLoading ? undefined : statusLabel}
+              chartUrlTemplate={clientState ? chartUrlTemplate : null}
             />
 
             {smartLoading && <div className="loading">Loading from Epic…</div>}
